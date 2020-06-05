@@ -6,9 +6,27 @@ const randomBackground = (e) =>
     e.target.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
 }
 
-const initSite = () =>
+const initPage = () =>
 {
-    let boxes = document.querySelectorAll(".box");
+    const etchSketch = document.querySelector("#etch-sketch");
+    let rows = [];
+    let boxes = [];
 
-    boxes.forEach(box => box.addEventListener("mouseenter", e => randomBackground(e)));
+    for (let i = 0; i < BOX_COUNT; i++)
+    {
+        let newRow = document.createElement("div");
+        newRow.classList.add("row");
+
+        for (let j = 0; j < BOX_COUNT; j++)
+        {
+            let newBox = document.createElement("div");
+            newBox.classList.add("box");
+            newBox.addEventListener("mouseenter", e =>  randomBackground(e));
+            newRow.appendChild(newBox);
+        }
+
+        rows.push(newRow);
+    }
+
+    rows.forEach(row => etchSketch.appendChild(row));
 }

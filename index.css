@@ -38,28 +38,17 @@ html, body
     height: 600px;
     background-color: black;
     margin: 20px auto;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 
 .row
 {
     display: flex;
-    flex-wrap: wrap;
     justify-content: center;
     flex-grow: 1;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
 
 .box
 {
     flex-grow: 1;
     background-color: white;
-    padding: 5px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
 }
