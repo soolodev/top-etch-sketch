@@ -1,4 +1,4 @@
-const BOX_COUNT = 32;
+const BOX_COUNT = 16;
 
 const randomColor = () =>
 {
