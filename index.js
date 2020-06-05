@@ -36,3 +36,35 @@ const initSite = () =>
         }
     }
 }
+
+const changeBoxCount = (newCount) =>
+{
+    let boxes = document.querySelectorAll(".box");
+    const boxContainer = document.querySelector("#box-container");
+
+    boxes.forEach(box => box.remove());
+    boxes = [];
+
+    for (let i = 0; i < newCount; i++)
+    {
+        for (let j = 0; j < newCount; j++)
+        {
+            let newBox = document.createElement("div");
+            newBox.classList.add("box");
+            newBox.addEventListener("mouseenter", e => changeBox(e));
+
+            newBox.style.width = `${(99.2 / newCount) - 0.2}%`; // 0.2 is the margin total
+            newBox.style.height = `${(88 / newCount) - 0.2}%`;
+            newBox.style.margin = `${0.1}%`;
+            boxes.push(newBox);
+        }
+    }
+
+    for (let i = 0; i < newCount; i++)
+    {
+        for (let j = 0; j < newCount; j++)
+        {
+            boxContainer.appendChild(boxes.pop());
+        }
+    }
+}
