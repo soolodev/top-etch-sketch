@@ -19,9 +19,9 @@ const initSite = () =>
             newBox.classList.add("box");
             newBox.addEventListener("mouseenter", e => changeBox(e));
 
-            newBox.style.width = `${50}px`;
-            newBox.style.height = `${50}px`;
-            newBox.style.margin = `${0.25}%`;
+            newBox.style.width = `${6}%`;
+            newBox.style.height = `${5.3}%`;
+            newBox.style.margin = `${0.1}%`;
             boxes.push(newBox);
         }
     }

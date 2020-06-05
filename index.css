@@ -1,18 +1,30 @@
 *
 {
     font-family: "Lucida Console";
+    transition: margin 0.25s, padding 0.25s;
+    -moz-transition: margin 0.25s, padding 0.25s;
+    -webkit-transition: margin 0.25s, padding 0.25s;
 }
 
 html, body
 {
-    background-color: #F1FFFB;
+    height: 100%;
+    /* From https://uigradients.com*/
+    background: #0F2027;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #2C5364, #203A43, #0F2027); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     margin: 0;
 }
 
 .box
 {
     display: inline-block;
-    background-color: black;
+    background-color: white;
+    border: 1px solid #1A1544;
+    border-radius: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 #box-container
@@ -20,21 +32,33 @@ html, body
     min-width: 350px;
     width: 95vw;
     height: 85vh;
-    background-color: #A8EAFF;
+    background: #0f0c29;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to left, #24243e, #302b63, #0f0c29);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to left, #24243e, #302b63, #0f0c29); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
     text-align: center;
     border-radius: 10px;
-    padding: 3px;
-    margin: 5px auto;
+    padding: 6px;
+    margin: 0 auto 6px;
+    overflow: hidden;
+    box-shadow: 0 0 40px 15px rgba(0, 0, 0, 0.2);
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 #header-container
 {
     width: 100vw;
-    color: #061A26;
+    color: #EBEBFF;
     text-align: center;
     text-shadow: 0 2px 0 rgba(0, 0, 0, 0.07);
     padding: 5px;
     box-sizing: border-box;
     -moz-box-sizing: border-box;
     -webkit-box-sizing: border-box;
+}
+
+#header-container h1
+{
+    margin: 8px auto;
 }
