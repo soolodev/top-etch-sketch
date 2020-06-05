@@ -1,4 +1,4 @@
-const BOX_COUNT = 16;
+const BOX_COUNT = 8;
 
 const changeBox = (e) =>
 {
@@ -19,8 +19,10 @@ const initSite = () =>
             newBox.classList.add("box");
             newBox.addEventListener("mouseenter", e => changeBox(e));
 
-            newBox.style.width = `${6}%`;
-            newBox.style.height = `${5.3}%`;
+            // newBox.style.width = `${6}%`;
+            newBox.style.width = `${(99.2 / BOX_COUNT) - 0.2}%`;
+            // newBox.style.height = `${5.3}%`;
+            newBox.style.height = `${(88 / BOX_COUNT) - 0.2}%`;
             newBox.style.margin = `${0.1}%`;
             boxes.push(newBox);
         }

@@ -8,7 +8,6 @@
 
 html, body
 {
-    height: 100%;
     /* From https://uigradients.com*/
     background: #0F2027;  /* fallback for old browsers */
     background: -webkit-linear-gradient(to left, #2C5364, #203A43, #0F2027);  /* Chrome 10-25, Safari 5.1-6 */
@@ -61,4 +60,17 @@ html, body
 #header-container h1
 {
     margin: 8px auto;
+}
+
+@media screen and (max-height: 700px)
+{
+    #box-container
+    {
+        margin-top: 6px;
+    }
+
+    #header-container
+    {
+        display: none;
+    }
 }
