@@ -1,5 +1,11 @@
 const BOX_COUNT = 16;
 
+const changeBox = (e) =>
+{
+    // from https://css-tricks.com/snippets/javascript/random-hex-color/
+    e.target.style.backgroundColor = "#" + Math.floor(Math.random()*16777215).toString(16);
+}
+
 const initSite = () =>
 {
     let boxes = [];
@@ -11,6 +17,7 @@ const initSite = () =>
         {
             let newBox = document.createElement("div");
             newBox.classList.add("box");
+            newBox.addEventListener("mouseenter", e => changeBox(e));
 
             newBox.style.width = `${50}px`;
             newBox.style.height = `${50}px`;
