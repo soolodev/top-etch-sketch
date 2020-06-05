@@ -7,11 +7,13 @@
     <script src="index.js"></script>
     <script>
         window.onload = initSite;
+        window.addEventListener("wheel", e => adjustBoxCount(e));
     </script>
 </head>
 <body>
     <header id="header-container">
     	<h1>Etch a Sketch</h1>
+        <p id="box-count">8</p>
     </header>
     <div id="box-container"></div>
 </body>

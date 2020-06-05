@@ -1,5 +1,26 @@
 const BOX_COUNT = 8;
 
+const adjustBoxCount = (e) =>
+{
+    e.preventDefault();
+
+    let currCount = document.getElementById("box-count");
+    let scrollVal = parseInt(currCount.textContent);
+
+    if (e.deltaY > 0)
+    {
+        decrementBoxCount(scrollVal);
+
+        currCount.textContent = scrollVal - 1;
+    }
+    else if (e.deltaY < 0)
+    {
+        incrementBoxCount(scrollVal);
+
+        currCount.textContent = scrollVal + 1;
+    }
+}
+
 const changeBox = (e) =>
 {
     // from https://css-tricks.com/snippets/javascript/random-hex-color/
@@ -67,4 +88,14 @@ const changeBoxCount = (newCount) =>
             boxContainer.appendChild(boxes.pop());
         }
     }
+}
+
+const incrementBoxCount = (currCount) =>
+{
+    changeBoxCount(currCount + 1);
+}
+
+const decrementBoxCount = (currCount) =>
+{
+    changeBoxCount(currCount - 1);
 }

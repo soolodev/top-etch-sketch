@@ -45,6 +45,12 @@ html, body
     -webkit-box-sizing: border-box;
 }
 
+#box-count
+{
+    float: right;
+    margin: 2px auto;
+}
+
 #header-container
 {
     width: 100vw;
