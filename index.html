@@ -5,16 +5,102 @@
     <title>Etch a Sketch</title>
     <link rel="stylesheet" type="text/css" href="index.css">
     <script src="index.js"></script>
-    <script>
-        window.onload = initSite;
-        window.addEventListener("wheel", e => adjustBoxCount(e));
-    </script>
 </head>
 <body>
     <header id="header-container">
     	<h1>Etch a Sketch</h1>
-        <p id="box-count">8</p>
     </header>
-    <div id="box-container"></div>
+    <div id="settings">
+        <p id="box-count">8</p>
+    </div>
+    <div class="box-container">
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+        <div class="container">
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+            <div class="box"></div>
+        </div>
+    </div>
+    <script>
+        // window.onload = initSite;
+        // window.addEventListener("wheel", e => adjustBoxCount(e));
+        let boxes = document.querySelectorAll(".box");
+
+        boxes.forEach(box => box.addEventListener("mouseenter", e => changeBox(e)));
+    </script>
 </body>
 </html>

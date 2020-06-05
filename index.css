@@ -15,19 +15,12 @@ html, body
     margin: 0;
 }
 
-.box
-{
-    display: inline-block;
-    background-color: white;
-    border: 1px solid #1A1544;
-    border-radius: 5px;
-    box-sizing: border-box;
-    -moz-box-sizing: border-box;
-    -webkit-box-sizing: border-box;
-}
-
 #box-container
 {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-evenly;
+    align-items: stretch;
     min-width: 350px;
     width: 95vw;
     height: 85vh;
@@ -48,6 +41,7 @@ html, body
 #box-count
 {
     float: right;
+    color: white;
     margin: 2px auto;
 }
 
@@ -65,7 +59,42 @@ html, body
 
 #header-container h1
 {
-    margin: 8px auto;
+    /*margin: 8px auto;*/
+}
+
+.box-container
+{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    width: 600px;
+    height: 600px;
+    background-color: black;
+    margin: 20px auto;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.container
+{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    flex-grow: 1;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+}
+
+.box
+{
+    flex-grow: 1;
+    background-color: white;
+    padding: 5px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 @media screen and (max-height: 700px)
