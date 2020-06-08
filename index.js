@@ -21,6 +21,34 @@ const randomBackground = (e) =>
     e.target.style.backgroundColor = randomColor();
 }
 
+const addOneBox = (currCount) =>
+{
+    const etchSketch = document.querySelector("#etch-sketch");
+    let rows = document.querySelectorAll(".row");
+
+    // Add a new box to each existing row
+    rows.forEach(row => {
+        let newBox = document.createElement("div");
+        newBox.classList.add("box");
+        newBox.addEventListener("mouseenter", e => randomBackground(e));
+        row.appendChild(newBox);
+    })
+
+    // Add a new row with the correct amount of boxes
+    let newRow = document.createElement("div");
+    newRow.classList.add("row");
+
+    for (let i = 0; i < currCount; i++)
+    {
+        let newBox = document.createElement("div");
+        newBox.classList.add("box");
+        newBox.addEventListener("mouseenter", e => randomBackground(e));
+        newRow.appendChild(newBox);
+    }
+
+    etchSketch.appendChild(newRow);
+}
+
 const resetBoxCount = (e) =>
 {
     let boxCountObj = document.querySelector("#box-count");
@@ -35,6 +63,7 @@ const incrementBoxCount = (e) =>
 
     if (boxCount <= BOX_COUNT_MIN)
     {
+        addOneBox(boxCount);
         boxCountObj.textContent = BOX_COUNT_MIN + 1;
         return;
     }
@@ -44,6 +73,7 @@ const incrementBoxCount = (e) =>
         return;
     }
 
+    addOneBox(boxCount);
     boxCountObj.textContent = boxCount + 1;
 }
 
