@@ -94,3 +94,13 @@ main
         height: 340px;
     }
 }
+
+
+@media screen and (max-width: 450px)
+{
+    #etch-sketch
+    {
+        width: 200px;
+        height: 200px;
+    }
+}
