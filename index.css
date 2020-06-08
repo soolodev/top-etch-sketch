@@ -77,6 +77,11 @@ main
     font-size: 12px;
 }
 
+#box-count::before
+{
+    content: "Grid size: ";
+}
+
 @media screen and (max-width: 800px)
 {
     #etch-sketch

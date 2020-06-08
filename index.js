@@ -64,7 +64,7 @@ const minusOneBox = currCount =>
     rowToRemove.remove();
 }
 
-const resetBoxCount = e =>
+const resetBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
@@ -91,7 +91,7 @@ const resetBoxCount = e =>
     boxCountObj.textContent = BOX_COUNT_INIT;
 }
 
-const incrementBoxCount = e =>
+const incrementBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
@@ -112,7 +112,7 @@ const incrementBoxCount = e =>
     boxCountObj.textContent = boxCount + 1;
 }
 
-const decrementBoxCount = e =>
+const decrementBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
@@ -162,7 +162,19 @@ const initPage = () =>
 
 const mouseScroll = e =>
 {
-    return;
+    e.preventDefault();
+
+    let boxCount = document.querySelector("#box-count").textContent;
+    let deltaY = e.deltaY;
+
+    if (deltaY > 0 && boxCount > BOX_COUNT_MIN)
+    {
+        decrementBoxCount();
+    }
+    else if (deltaY < 0 && boxCount < BOX_COUNT_MAX)
+    {
+        incrementBoxCount();
+    }
 }
 
 const touchEnd = e =>
