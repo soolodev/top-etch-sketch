@@ -23,9 +23,9 @@ const randomBackground = (e) =>
 
 const resetBoxCount = (e) =>
 {
-    let boxCount = document.querySelector("#box-count");
+    let boxCountObj = document.querySelector("#box-count");
 
-    boxCount.textContent = BOX_COUNT_INIT;
+    boxCountObj.textContent = BOX_COUNT_INIT;
 }
 
 const incrementBoxCount = (e) =>
@@ -44,12 +44,12 @@ const incrementBoxCount = (e) =>
         return;
     }
 
-    boxCount.textContent = boxCount + 1;
+    boxCountObj.textContent = boxCount + 1;
 }
 
 const decrementBoxCount = (e) =>
 {
-    let boxCount = document.querySelector("#box-count");
+    let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
 
     if (boxCount <= BOX_COUNT_MIN)
@@ -63,11 +63,12 @@ const decrementBoxCount = (e) =>
         return;
     }
 
-    boxCount.textContent = boxCount - 1;
+    boxCountObj.textContent = boxCount - 1;
 }
 
 const initPage = () =>
 {
+    const boxCountObj = document.querySelector("#box-count");
     const etchSketch = document.querySelector("#etch-sketch");
     let rows = [];
     let boxes = [];
@@ -89,4 +90,5 @@ const initPage = () =>
     }
 
     rows.forEach(row => etchSketch.appendChild(row));
+    boxCountObj.textContent = BOX_COUNT_INIT;
 }
