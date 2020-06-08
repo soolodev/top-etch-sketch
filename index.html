@@ -22,6 +22,8 @@
                 <div>Grid size:</div><div id="box-count"></div>
             </div>
             <p>Scroll to adjust grid size (max 128)</p>
+            <p>Enter a value to set grid size (max 128)</p>
+            <p>Choose a type of brush (Black/White or Rainbow</p>
             <button id="increase-btn">Increase by 1</button>
             <button id="decrease-btn">Decrease by 1</button>
         </div>
@@ -35,6 +37,8 @@
         resetButton.addEventListener("click", e => resetBoxCount(e));
         incrementButton.addEventListener("click", e => incrementBoxCount(e));
         decrementButton.addEventListener("click", e => decrementBoxCount(e));
+
+        window.addEventListener("mousescroll", e => mouseScroll(e));
 
         document.querySelector("#etch-sketch").addEventListener("touchstart", e => touchStart(e));
     </script>

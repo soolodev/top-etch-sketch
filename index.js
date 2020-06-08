@@ -16,12 +16,12 @@ const randomColor = () =>
     return ("#" + randColor);
 }
 
-const randomBackground = (e) =>
+const randomBackground = e =>
 {
     e.target.style.backgroundColor = randomColor();
 }
 
-const addOneBox = (currCount) =>
+const addOneBox = currCount =>
 {
     const etchSketch = document.querySelector("#etch-sketch");
     let rows = document.querySelectorAll(".row");
@@ -49,7 +49,7 @@ const addOneBox = (currCount) =>
     etchSketch.appendChild(newRow);
 }
 
-const minusOneBox = (currCount) =>
+const minusOneBox = currCount =>
 {
     const etchSketch = document.querySelector("#etch-sketch");
     let rows = document.querySelectorAll(".row");
@@ -64,7 +64,7 @@ const minusOneBox = (currCount) =>
     rowToRemove.remove();
 }
 
-const resetBoxCount = (e) =>
+const resetBoxCount = e =>
 {
     let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
@@ -91,7 +91,7 @@ const resetBoxCount = (e) =>
     boxCountObj.textContent = BOX_COUNT_INIT;
 }
 
-const incrementBoxCount = (e) =>
+const incrementBoxCount = e =>
 {
     let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
@@ -112,7 +112,7 @@ const incrementBoxCount = (e) =>
     boxCountObj.textContent = boxCount + 1;
 }
 
-const decrementBoxCount = (e) =>
+const decrementBoxCount = e =>
 {
     let boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.textContent, 10);
@@ -160,7 +160,12 @@ const initPage = () =>
     boxCountObj.textContent = BOX_COUNT_INIT;
 }
 
-const touchEnd = (e) =>
+const mouseScroll = e =>
+{
+    return;
+}
+
+const touchEnd = e =>
 {
     e.preventDefault();
 
@@ -168,7 +173,7 @@ const touchEnd = (e) =>
     e.target.removeEventListener("touchend", touchEnd);
 }
 
-const touchMove = (e) =>
+const touchMove = e =>
 {
     e.preventDefault();
 
@@ -186,7 +191,7 @@ const touchMove = (e) =>
         selectedBox.style.backgroundColor = randomColor();
 }
 
-const touchStart = (e) =>
+const touchStart = e =>
 {
     e.preventDefault();
 
