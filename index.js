@@ -1,4 +1,6 @@
-const BOX_COUNT = 16;
+const BOX_COUNT_INIT = 16;
+const BOX_COUNT_MAX = 128;
+const BOX_COUNT_MIN = 1;
 
 const randomColor = () =>
 {
@@ -19,18 +21,49 @@ const randomBackground = (e) =>
     e.target.style.backgroundColor = randomColor();
 }
 
-const incrementBoxCount = (e) =>
+const resetBoxCount = (e) =>
 {
     let boxCount = document.querySelector("#box-count");
 
-    boxCount.textContent = parseInt(boxCount.textContent, 10) + 1;
+    boxCount.textContent = BOX_COUNT_INIT;
+}
+
+const incrementBoxCount = (e) =>
+{
+    let boxCountObj = document.querySelector("#box-count");
+    let boxCount = parseInt(boxCountObj.textContent, 10);
+
+    if (boxCount <= BOX_COUNT_MIN)
+    {
+        boxCountObj.textContent = BOX_COUNT_MIN;
+        return;
+    }
+    else if (boxCount >= BOX_COUNT_MAX)
+    {
+        boxCountObj.textContent = BOX_COUNT_MAX;
+        return;
+    }
+
+    boxCount.textContent = boxCount + 1;
 }
 
 const decrementBoxCount = (e) =>
 {
     let boxCount = document.querySelector("#box-count");
+    let boxCount = parseInt(boxCountObj.textContent, 10);
 
-    boxCount.textContent = parseInt(boxCount.textContent, 10) - 1;
+    if (boxCount <= BOX_COUNT_MIN)
+    {
+        boxCountObj.textContent = BOX_COUNT_MIN;
+        return;
+    }
+    else if (boxCount >= BOX_COUNT_MAX)
+    {
+        boxCountObj.textContent = BOX_COUNT_MAX;
+        return;
+    }
+
+    boxCount.textContent = boxCount - 1;
 }
 
 const initPage = () =>
@@ -39,12 +72,12 @@ const initPage = () =>
     let rows = [];
     let boxes = [];
 
-    for (let i = 0; i < BOX_COUNT; i++)
+    for (let i = 0; i < BOX_COUNT_INIT; i++)
     {
         let newRow = document.createElement("div");
         newRow.classList.add("row");
 
-        for (let j = 0; j < BOX_COUNT; j++)
+        for (let j = 0; j < BOX_COUNT_INIT; j++)
         {
             let newBox = document.createElement("div");
             newBox.classList.add("box");
