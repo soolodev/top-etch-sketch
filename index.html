@@ -19,11 +19,22 @@
         <div id="options">
             <button id="reset-btn">Reset</button>
             <div class="key-value-grid">
-                <div>Grid size:</div><div>8</div>
+                <div>Grid size:</div><div id="box-count">8</div>
             </div>
             <p>Scroll to adjust grid size (max 128)</p>
+            <button id="increase-btn">Increase by 1</button>
+            <button id="decrease-btn">Decrease by 1</button>
         </div>
         <div id="etch-sketch"></div>
     </main>
+    <script>
+        let resetButton = document.querySelector("#reset-btn");
+        let incrementButton = document.querySelector("#increase-btn");
+        let decrementButton = document.querySelector("#decrease-btn");
+
+        resetButton.addEventListener("click", e => resetBoxCount(e));
+        incrementButton.addEventListener("click", e => incrementBoxCount(e));
+        decrementButton.addEventListener("click", e => decrementBoxCount(e));
+    </script>
 </body>
 </html>

@@ -19,6 +19,20 @@ const randomBackground = (e) =>
     e.target.style.backgroundColor = randomColor();
 }
 
+const incrementBoxCount = (e) =>
+{
+    let boxCount = document.querySelector("#box-count");
+
+    boxCount.textContent = parseInt(boxCount.textContent, 10) + 1;
+}
+
+const decrementBoxCount = (e) =>
+{
+    let boxCount = document.querySelector("#box-count");
+
+    boxCount.textContent = parseInt(boxCount.textContent, 10) - 1;
+}
+
 const initPage = () =>
 {
     const etchSketch = document.querySelector("#etch-sketch");
