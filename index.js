@@ -67,6 +67,26 @@ const minusOneBox = (currCount) =>
 const resetBoxCount = (e) =>
 {
     let boxCountObj = document.querySelector("#box-count");
+    let boxCount = parseInt(boxCountObj.textContent, 10);
+
+    console.log(boxCount);
+
+    if (boxCount > BOX_COUNT_INIT)
+    {
+        while (boxCount != BOX_COUNT_INIT)
+        {
+            minusOneBox(boxCount);
+            boxCount -= 1;
+        }
+    }
+    else if (boxCount < BOX_COUNT_INIT)
+    {
+        while (boxCount != BOX_COUNT_INIT)
+        {
+            addOneBox(boxCount);
+            boxCount += 1;
+        }
+    }
 
     boxCountObj.textContent = BOX_COUNT_INIT;
 }
