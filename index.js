@@ -35,7 +35,7 @@ const incrementBoxCount = (e) =>
 
     if (boxCount <= BOX_COUNT_MIN)
     {
-        boxCountObj.textContent = BOX_COUNT_MIN;
+        boxCountObj.textContent = BOX_COUNT_MIN + 1;
         return;
     }
     else if (boxCount >= BOX_COUNT_MAX)
@@ -59,7 +59,7 @@ const decrementBoxCount = (e) =>
     }
     else if (boxCount >= BOX_COUNT_MAX)
     {
-        boxCountObj.textContent = BOX_COUNT_MAX;
+        boxCountObj.textContent = BOX_COUNT_MAX - 1;
         return;
     }
 
