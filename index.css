@@ -12,6 +12,12 @@ html, body
     margin: 0;
 }
 
+main
+{
+    display: grid;
+    grid-template-columns: minmax(5px, 20px) minmax(100px, 400px) 1fr minmax(0px, 500px);
+}
+
 #header-container
 {
     width: 100vw;
@@ -31,13 +37,15 @@ html, body
 
 #etch-sketch
 {
+    justify-self: start;
+    place-self: center;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     width: 600px;
     height: 600px;
     background-color: black;
-    margin: 20px auto;
+    margin: 20px 8px;
     transition: width 0.1s, height 0.1s;
     -moz-transition: width 0.1s, height 0.1s;
     -webkit-transition: width 0.2s, height 0.2s;
@@ -56,7 +64,18 @@ html, body
     background-color: white;
 }
 
-@media screen and (max-width: 630px)
+#options
+{
+    place-self: right;
+    max-width: 200px;
+    padding: 7px;
+    border-radius: 15px;
+    background-color: #282828;
+    color: white;
+    font-size: 12px;
+}
+
+@media screen and (max-width: 800px)
 {
     #etch-sketch
     {
@@ -65,11 +84,11 @@ html, body
     }
 }
 
-@media screen and (max-width: 490px)
+@media screen and (max-width: 570px)
 {
     #etch-sketch
     {
-        width: 360px;
-        height: 360px;
+        width: 340px;
+        height: 340px;
     }
 }
