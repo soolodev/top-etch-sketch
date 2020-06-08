@@ -139,3 +139,36 @@ const initPage = () =>
     rows.forEach(row => etchSketch.appendChild(row));
     boxCountObj.textContent = BOX_COUNT_INIT;
 }
+
+const touchEnd = (e) =>
+{
+    e.preventDefault();
+
+    e.target.removeEventListener("touchmove", touchMove);
+    e.target.removeEventListener("touchend", touchEnd);
+}
+
+const touchMove = (e) =>
+{
+    e.preventDefault();
+
+    let touch = e.touches[0];
+    let posX = touch.pageX;
+    let posY = touch.pageY;
+
+    console.log(e);
+
+    let selectedBox = document.elementFromPoint(posX, posY);
+
+    console.log(selectedBox);
+
+    if (selectedBox != null && selectedBox.classList.contains("box"))
+        selectedBox.style.backgroundColor = randomColor();
+}
+
+const touchStart = (e) =>
+{
+    e.preventDefault();
+    e.target.addEventListener("touchmove", e => touchMove(e));
+    e.target.addEventListener("touchend", e => touchEnd(e));
+}

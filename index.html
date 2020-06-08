@@ -35,6 +35,8 @@
         resetButton.addEventListener("click", e => resetBoxCount(e));
         incrementButton.addEventListener("click", e => incrementBoxCount(e));
         decrementButton.addEventListener("click", e => decrementBoxCount(e));
+
+        document.querySelector("#etch-sketch").addEventListener("touchstart", e => touchStart(e));
     </script>
 </body>
 </html>
