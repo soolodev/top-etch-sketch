@@ -38,7 +38,7 @@ const addOneBox = (currCount) =>
     let newRow = document.createElement("div");
     newRow.classList.add("row");
 
-    for (let i = 0; i < currCount; i++)
+    for (let i = 0; i <= currCount; i++)
     {
         let newBox = document.createElement("div");
         newBox.classList.add("box");
@@ -47,6 +47,21 @@ const addOneBox = (currCount) =>
     }
 
     etchSketch.appendChild(newRow);
+}
+
+const minusOneBox = (currCount) =>
+{
+    const etchSketch = document.querySelector("#etch-sketch");
+    let rows = document.querySelectorAll(".row");
+    let rowToRemove = Array.from(rows).pop();
+
+    // Remove a box to each existing row
+    rows.forEach(row => {
+        let boxToRemove = Array.from(row.childNodes).pop();
+        boxToRemove.remove();
+    })
+
+    rowToRemove.remove();
 }
 
 const resetBoxCount = (e) =>
@@ -89,10 +104,12 @@ const decrementBoxCount = (e) =>
     }
     else if (boxCount >= BOX_COUNT_MAX)
     {
+        minusOneBox(boxCount);
         boxCountObj.textContent = BOX_COUNT_MAX - 1;
         return;
     }
 
+    minusOneBox(boxCount);
     boxCountObj.textContent = boxCount - 1;
 }
 
