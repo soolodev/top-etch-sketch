@@ -156,11 +156,11 @@ const touchMove = (e) =>
     let posX = touch.pageX;
     let posY = touch.pageY;
 
-    console.log(e);
+    // console.log(e);
 
     let selectedBox = document.elementFromPoint(posX, posY);
 
-    console.log(selectedBox);
+    // console.log(selectedBox);
 
     if (selectedBox != null && selectedBox.classList.contains("box"))
         selectedBox.style.backgroundColor = randomColor();
@@ -169,6 +169,7 @@ const touchMove = (e) =>
 const touchStart = (e) =>
 {
     e.preventDefault();
+
     e.target.addEventListener("touchmove", e => touchMove(e));
     e.target.addEventListener("touchend", e => touchEnd(e));
 }
