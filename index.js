@@ -69,7 +69,7 @@ const minusOneBox = currCount =>
 const resetBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
-    let boxCount = parseInt(boxCountObj.textContent, 10);
+    let boxCount = parseInt(boxCountObj.value, 10);
 
     console.log(boxCount);
 
@@ -90,49 +90,49 @@ const resetBoxCount = () =>
         }
     }
 
-    boxCountObj.textContent = BOX_COUNT_INIT;
+    boxCountObj.value = BOX_COUNT_INIT;
 }
 
 const incrementBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
-    let boxCount = parseInt(boxCountObj.textContent, 10);
+    let boxCount = parseInt(boxCountObj.value, 10);
 
     if (boxCount <= BOX_COUNT_MIN)
     {
         addOneBox(boxCount);
-        boxCountObj.textContent = BOX_COUNT_MIN + 1;
+        boxCountObj.value = BOX_COUNT_MIN + 1;
         return;
     }
     else if (boxCount >= BOX_COUNT_MAX)
     {
-        boxCountObj.textContent = BOX_COUNT_MAX;
+        boxCountObj.value = BOX_COUNT_MAX;
         return;
     }
 
     addOneBox(boxCount);
-    boxCountObj.textContent = boxCount + 1;
+    boxCountObj.value = boxCount + 1;
 }
 
 const decrementBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
-    let boxCount = parseInt(boxCountObj.textContent, 10);
+    let boxCount = parseInt(boxCountObj.value, 10);
 
     if (boxCount <= BOX_COUNT_MIN)
     {
-        boxCountObj.textContent = BOX_COUNT_MIN;
+        boxCountObj.value = BOX_COUNT_MIN;
         return;
     }
     else if (boxCount >= BOX_COUNT_MAX)
     {
         minusOneBox(boxCount);
-        boxCountObj.textContent = BOX_COUNT_MAX - 1;
+        boxCountObj.value = BOX_COUNT_MAX - 1;
         return;
     }
 
     minusOneBox(boxCount);
-    boxCountObj.textContent = boxCount - 1;
+    boxCountObj.value = boxCount - 1;
 }
 
 const initPage = () =>
