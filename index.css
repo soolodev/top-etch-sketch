@@ -17,7 +17,7 @@ html, body
 main
 {
     display: grid;
-    grid-template-columns: minmax(5px, 20px) minmax(100px, 400px) 1fr minmax(0px, 500px);
+    grid-template-columns: minmax(5px, 400px) minmax(100px, 220px) 1fr minmax(0px, 620px);
 }
 
 #header-container
@@ -69,12 +69,15 @@ main
 #options
 {
     place-self: right;
-    max-width: 200px;
+    max-width: 220px;
     padding: 7px;
     border-radius: 15px;
     background-color: #282828;
     color: white;
     font-size: 12px;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
 }
 
 #box-count::before
