@@ -28,6 +28,11 @@ const addOneBox = currCount =>
     const etchSketch = document.querySelector("#etch-sketch");
     let rows = document.querySelectorAll(".row");
 
+    if (currCount >= BOX_COUNT_MAX)
+    {
+        return;
+    }
+
     // Add a new box to each existing row
     rows.forEach(row => {
         let newBox = document.createElement("div");
@@ -49,6 +54,9 @@ const addOneBox = currCount =>
     }
 
     etchSketch.appendChild(newRow);
+
+    document.querySelector("#box-count").value = currCount + 1;
+    document.querySelector("#box-range").value = currCount + 1;
 }
 
 const minusOneBox = currCount =>
@@ -57,6 +65,11 @@ const minusOneBox = currCount =>
     let rows = document.querySelectorAll(".row");
     let rowToRemove = Array.from(rows).pop();
 
+    if (currCount <= BOX_COUNT_MIN)
+    {
+        return;
+    }
+
     // Remove a box to each existing row
     rows.forEach(row => {
         let boxToRemove = Array.from(row.childNodes).pop();
@@ -64,14 +77,16 @@ const minusOneBox = currCount =>
     })
 
     rowToRemove.remove();
+
+    document.querySelector("#box-count").value = currCount - 1;
+    document.querySelector("#box-range").value = currCount - 1;
 }
 
 const resetBoxCount = () =>
 {
     let boxCountObj = document.querySelector("#box-count");
+    let boxRangeObj = document.querySelector("#box-range");
     let boxCount = parseInt(boxCountObj.value, 10);
-
-    console.log(boxCount);
 
     if (boxCount > BOX_COUNT_INIT)
     {
@@ -89,50 +104,22 @@ const resetBoxCount = () =>
             boxCount += 1;
         }
     }
-
-    boxCountObj.value = BOX_COUNT_INIT;
 }
 
 const incrementBoxCount = () =>
 {
-    let boxCountObj = document.querySelector("#box-count");
+    const boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.value, 10);
 
-    if (boxCount <= BOX_COUNT_MIN)
-    {
-        addOneBox(boxCount);
-        boxCountObj.value = BOX_COUNT_MIN + 1;
-        return;
-    }
-    else if (boxCount >= BOX_COUNT_MAX)
-    {
-        boxCountObj.value = BOX_COUNT_MAX;
-        return;
-    }
-
     addOneBox(boxCount);
-    boxCountObj.value = boxCount + 1;
 }
 
 const decrementBoxCount = () =>
 {
-    let boxCountObj = document.querySelector("#box-count");
+    const boxCountObj = document.querySelector("#box-count");
     let boxCount = parseInt(boxCountObj.value, 10);
 
-    if (boxCount <= BOX_COUNT_MIN)
-    {
-        boxCountObj.value = BOX_COUNT_MIN;
-        return;
-    }
-    else if (boxCount >= BOX_COUNT_MAX)
-    {
-        minusOneBox(boxCount);
-        boxCountObj.value = BOX_COUNT_MAX - 1;
-        return;
-    }
-
     minusOneBox(boxCount);
-    boxCountObj.value = boxCount - 1;
 }
 
 const initPage = () =>
@@ -159,7 +146,8 @@ const initPage = () =>
     }
 
     rows.forEach(row => etchSketch.appendChild(row));
-    boxCountObj.textContent = BOX_COUNT_INIT;
+    boxCountObj.value = BOX_COUNT_INIT;
+    document.querySelector("#box-range").value = (BOX_COUNT_INIT / BOX_COUNT_MAX) * 10;
 
     document.querySelector("#random-brush").classList.add("active-button");
 }
@@ -168,7 +156,7 @@ const mouseScroll = e =>
 {
     e.preventDefault();
 
-    let boxCount = document.querySelector("#box-count").textContent;
+    let boxCount = document.querySelector("#box-count").value;
     let deltaY = e.deltaY;
 
     if (deltaY > 0 && boxCount > BOX_COUNT_MIN)
@@ -178,6 +166,36 @@ const mouseScroll = e =>
     else if (deltaY < 0 && boxCount < BOX_COUNT_MAX)
     {
         incrementBoxCount();
+    }
+}
+
+const boxChange = e =>
+{
+    return;
+}
+
+const rangeChange = e =>
+{
+    let boxCountObj = document.querySelector("#box-count");
+    let boxRangeObj = document.querySelector("#box-range");
+    let boxCount = parseInt(boxCountObj.value, 10);
+    let rangeValue = e.target.value;
+
+    if (boxCount > rangeValue)
+    {
+        while (boxCount != rangeValue && boxCount > BOX_COUNT_MIN)
+        {
+            minusOneBox(boxCount);
+            boxCount -= 1;
+        }
+    }
+    else if (boxCount < rangeValue)
+    {
+        while (boxCount != rangeValue && boxCount < BOX_COUNT_MAX)
+        {
+            addOneBox(boxCount);
+            boxCount += 1;
+        }
     }
 }
 
