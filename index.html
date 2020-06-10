@@ -17,15 +17,18 @@
     <main>
         <div></div>
         <div id="options">
+            <p id="box-count"></p>
             <button id="reset-btn">Reset</button>
-            <div class="key-value-grid">
-                <p id="box-count"></p>
-            </div>
-            <p>Scroll to adjust grid size (max 128)</p>
-            <p>Enter a value to set grid size (max 128)</p>
-            <p>Choose a type of brush (Black/White or Rainbow</p>
             <button id="increase-btn">Increase by 1</button>
             <button id="decrease-btn">Decrease by 1</button>
+            <p>Scroll to adjust grid size (max 128)</p>
+            <input id="size-range" type="range">
+            <p>Enter a value to set grid size (max 128)</p>
+            <input id="size-text" type="text">
+            <button>Apply Size</button>
+            <p>Brush Type</p>
+            <button>Black/White</button>
+            <button>Random</button>
         </div>
         <div id="etch-sketch"></div>
     </main>
