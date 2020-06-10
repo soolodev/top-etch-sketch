@@ -147,7 +147,7 @@ const initPage = () =>
 
     rows.forEach(row => etchSketch.appendChild(row));
     boxCountObj.value = BOX_COUNT_INIT;
-    document.querySelector("#box-range").value = (BOX_COUNT_INIT / BOX_COUNT_MAX) * 10;
+    document.querySelector("#box-range").value = BOX_COUNT_INIT;
 
     document.querySelector("#random-brush").classList.add("active-button");
 }

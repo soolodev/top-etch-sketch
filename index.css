@@ -188,7 +188,7 @@ main
 
 #pointer + p
 {
-    letter-spacing: 2px;
+    font-size: 10px;
     position: relative;
     z-index: 2;
     margin: 4px 2px;
