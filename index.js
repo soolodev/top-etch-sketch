@@ -2,6 +2,8 @@ const BOX_COUNT_INIT = 16;
 const BOX_COUNT_MAX = 128;
 const BOX_COUNT_MIN = 1;
 
+let brushType = "Rainbow";
+
 const randomColor = () =>
 {
     // from https://css-tricks.com/snippets/javascript/random-hex-color/
@@ -158,6 +160,8 @@ const initPage = () =>
 
     rows.forEach(row => etchSketch.appendChild(row));
     boxCountObj.textContent = BOX_COUNT_INIT;
+
+    document.querySelector("#random-brush").classList.add("active-button");
 }
 
 const mouseScroll = e =>
@@ -209,4 +213,46 @@ const touchStart = e =>
 
     e.target.addEventListener("touchmove", e => touchMove(e));
     e.target.addEventListener("touchend", e => touchEnd(e));
+}
+
+/*
+    Tool tip
+*/
+// Swaps text and shows tip
+const moveIn = (e) =>
+{
+    const hoverObject = e.target.id;
+
+    const tipText = document.querySelector("#pointer + p");
+    const pointerObj = document.querySelector("#pointer");
+    const containerObj = document.querySelector("#tip-container");
+
+    const hoverPos = e.target.getBoundingClientRect();
+    const pointerPos = pointerObj.getBoundingClientRect();
+
+    containerObj.classList.add("visible");
+    containerObj.classList.add("active");
+    pointerObj.style.setProperty("left", `${hoverPos.left + (hoverPos.width / 2) - (pointerPos.width / 2)}px`);
+
+    if (hoverObject == "black-brush")
+    {
+        tipText.innerHTML = "Black Brush";
+    }
+    else if (hoverObject == "white-brush")
+    {
+        tipText.innerHTML = "White Brush";
+    }
+    else if (hoverObject == "random-brush")
+    {
+        tipText.innerHTML = "Rainbow Brush";
+    }
+
+}
+
+// remove tip
+const moveOut = (e) =>
+{
+    const containerObj = document.querySelector("#tip-container");
+
+    containerObj.classList.remove("visible", "active");
 }

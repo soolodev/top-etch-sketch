@@ -3,6 +3,21 @@
     font-family: "Lucida Console";
 }
 
+p
+{
+    margin: 4px 0;
+}
+
+hr
+{
+    margin: 12px 0;
+}
+
+button
+{
+    border-radius: 2px;
+}
+
 html, body
 {
     /* From https://uigradients.com*/
@@ -70,9 +85,10 @@ main
 {
     place-self: right;
     max-width: 220px;
-    padding: 7px;
+    padding: 3px;
     border-radius: 15px;
     background-color: #282828;
+    text-align: center;
     color: white;
     font-size: 12px;
     box-sizing: border-box;
@@ -80,9 +96,117 @@ main
     -webkit-box-sizing: border-box;
 }
 
-#box-count::before
+#box-count
 {
-    content: "Grid size: ";
+    width: 40%;
+    height: 20px;
+    text-align: center;
+    margin: 0;
+}
+
+#decrease-btn, #increase-btn
+{
+    width: 20px;
+    height: 20px;
+    text-align: center;
+    margin: 1px;
+    padding: 0;
+}
+
+#box-range
+{
+    width: 90%;
+    margin: 10px 0 0;
+}
+
+#reset-btn
+{
+    width: 80%;
+    max-width: 100px;
+    height: 35px;
+}
+
+#black-brush, #white-brush, #random-brush
+{
+    width: 25%;
+    height: 35px;
+    margin: 0 1px;
+}
+
+#black-brush
+{
+    background-color: black;
+    color: white;
+}
+
+#white-brush
+{
+    background-color: white;
+}
+
+#random-brush
+{
+    background: red; /* For browsers that do not support gradients */
+    background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet); /* For Safari 5.1 to 6.0 */
+    background: -o-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Opera 11.1 to 12.0 */
+    background: -moz-linear-gradient(right, orange, yellow, green, cyan, blue, violet); /* For Firefox 3.6 to 15 */
+    background: linear-gradient(to right, orange , yellow, green, cyan, blue, violet); /* Standard syntax (must be last) */
+}
+
+#tip-container
+{
+    opacity: 0;
+    visibility: hidden;
+    overflow: hidden;
+    box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    -webkit-box-sizing: border-box;
+    transition: all 0.75s;
+    -moz-transition: all 0.75s;
+    -webkit-transition: all 0.75s;
+    box-shadow: 0 0 8px 0 rgb(0, 0, 0, 0.2);
+    border-radius: 8px;
+    width: 95%;
+    background-color: #2EB99D;
+    padding: 10px 2px;
+    margin: 10px 0;
+}
+
+#pointer
+{
+    z-index: 1;
+    display: block;
+    position: absolute;
+    width: 12px;
+    height: 12px;
+    background-color: #2EB99D;
+    transform: translateY(-95%) rotate(45deg);
+    transition: all 0.25s;
+    -moz-transition: all 0.25s;
+    -webkit-transition: all 0.25s;
+}
+
+#pointer + p
+{
+    letter-spacing: 2px;
+    position: relative;
+    z-index: 2;
+    margin: 4px 2px;
+}
+
+.visible
+{
+    visibility: visible !important;
+}
+
+.active
+{
+    opacity: 1 !important;
+}
+
+.active-button
+{
+    border: 5px solid #00FF84;
 }
 
 @media screen and (max-width: 800px)
@@ -92,14 +216,34 @@ main
         width: 450px;
         height: 450px;
     }
+
+    #black-brush, #white-brush, #random-brush
+    {
+        height: 28px;
+    }
 }
 
 @media screen and (max-width: 570px)
 {
+    .desktop-tip
+    {
+        display: none;
+    }
+
     #etch-sketch
     {
         width: 340px;
         height: 340px;
+    }
+
+    #box-count
+    {
+        height: 16px;
+    }
+
+    #black-brush, #white-brush, #random-brush
+    {
+        height: 23px;
     }
 }
 
