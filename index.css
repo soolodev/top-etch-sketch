@@ -33,7 +33,7 @@ main
 {
     display: grid;
     /*grid-template-columns: minmax(5px, 400px) minmax(100px, 220px) 1fr minmax(0px, 620px);*/
-    grid-template-columns: minmax(100px, 25%) 1fr;
+    grid-template-columns: minmax(100px, 35%) 1fr;
     grid-template-rows: auto auto;
 }
 
@@ -114,8 +114,8 @@ main
 
 #decrease-btn, #increase-btn
 {
-    width: 20px;
-    height: 20px;
+    width: 25px;
+    height: 25px;
     text-align: center;
     margin: 1px;
     padding: 0;
@@ -220,10 +220,15 @@ main
 
 @media screen and (max-width: 800px)
 {
+    .desktop-tip
+    {
+        display: none;
+    }
+
     #etch-sketch
     {
-        width: 450px;
-        height: 450px;
+        width: 430px;
+        height: 430px;
         grid-column: 1 / -1;
         justify-self: center;
     }
@@ -235,42 +240,34 @@ main
         max-width: none;
     }
 
-    #black-brush, #white-brush, #rainbow-brush
-    {
-        height: 28px;
-    }
-}
-
-@media screen and (max-width: 570px)
-{
-    .desktop-tip
-    {
-        display: none;
-    }
-
-    #etch-sketch
-    {
-        width:  430px;
-        height: 430px;
-    }
-
     #box-text
     {
-        height: 16px;
+        width: 60px;
+        height: 25px;
+    }
+
+    #decrease-btn, #increase-btn
+    {
+        width: 30px;
+        height: 30px;
     }
 
     #black-brush, #white-brush, #rainbow-brush
     {
-        height: 23px;
+        height: 30px;
+    }
+
+    #tip-container
+    {
+        padding: 5px 2px;
     }
 }
-
 
 @media screen and (max-width: 450px)
 {
     #etch-sketch
     {
-        width:  350px;
-        height: 350px;
+        width:  300px;
+        height: 300px;
     }
 }
