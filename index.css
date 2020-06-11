@@ -128,22 +128,14 @@ main
     margin: 10px 0 0;
 }
 
-#reset-btn
+#reset-btn, #fill-btn
 {
     width: 80%;
-    max-width: 90px;
+    max-width: 120px;
     height: 35px;
     background-color: white;
     margin-top: 5px;
-}
-
-#fill-btn
-{
-    width: 80%;
-    max-width: 90px;
-    height: 35px;
-    background-color: white;
-    margin-top: 5px;
+    vertical-align: top;
 }
 
 #black-brush, #white-brush, #rainbow-brush
