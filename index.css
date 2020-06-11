@@ -237,6 +237,11 @@ main
         display: none;
     }
 
+    #header-container h1
+    {
+        font-size: 20px;
+    }
+
     #etch-sketch
     {
         /*width: 430px;*/
@@ -294,7 +299,7 @@ main
 {
     #etch-sketch
     {
-        width:  40vh;
-        height: 40vh;
+        width:  35vh;
+        height: 35vh;
     }
 }
