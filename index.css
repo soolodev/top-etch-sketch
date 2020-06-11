@@ -178,7 +178,7 @@ main
     width: 95%;
     background-color: #2EB99D;
     padding: 10px 2px;
-    margin: 10px 0;
+    margin: 10px auto;
 }
 
 #pointer
@@ -250,8 +250,8 @@ main
 
     #etch-sketch
     {
-        width: 340px;
-        height: 340px;
+        width:  430px;
+        height: 430px;
     }
 
     #box-text
@@ -270,7 +270,7 @@ main
 {
     #etch-sketch
     {
-        width: 200px;
-        height: 200px;
+        width:  350px;
+        height: 350px;
     }
 }
