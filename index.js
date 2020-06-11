@@ -151,11 +151,11 @@ const changeBackground = elem =>
     }
 }
 
-const resetGrid = () =>
+const fillGrid = () =>
 {
     let boxes = document.querySelectorAll(".box");
 
-    boxes.forEach(box => whiteBackground(box));
+    boxes.forEach(box => changeBackground(box));
 }
 
 /* --- Box Modifiers --- */

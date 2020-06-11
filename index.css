@@ -131,16 +131,16 @@ main
 #reset-btn
 {
     width: 80%;
-    max-width: 100px;
+    max-width: 90px;
     height: 35px;
     background-color: white;
     margin-top: 5px;
 }
 
-#clear-btn
+#fill-btn
 {
     width: 80%;
-    max-width: 100px;
+    max-width: 90px;
     height: 35px;
     background-color: white;
     margin-top: 5px;
@@ -278,7 +278,7 @@ main
         margin-top: 0;
     }
 
-    #clear-btn
+    #fill-btn
     {
         width: 40%;
         margin-top: 0;
