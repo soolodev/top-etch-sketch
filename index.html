@@ -25,7 +25,8 @@
 
             <p class="desktop-tip">Scroll to adjust grid size</p>
 
-            <button id="reset-btn">RESET GRID</button>
+            <button id="reset-btn">RESET SIZE</button>
+            <button id="clear-btn">ERASE GRID</button>
             <hr>
 
             <p>Brush Type</p>
@@ -43,6 +44,7 @@
     <script>
         // Buttons
         document.querySelector("#reset-btn").addEventListener("click", resetBoxCount);
+        document.querySelector("#clear-btn").addEventListener("click", resetGrid);
         document.querySelector("#increase-btn").addEventListener("click", addOneBox);
         document.querySelector("#decrease-btn").addEventListener("click", minusOneBox);
 

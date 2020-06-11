@@ -151,6 +151,13 @@ const changeBackground = elem =>
     }
 }
 
+const resetGrid = () =>
+{
+    let boxes = document.querySelectorAll(".box");
+
+    boxes.forEach(box => box.style.backgroundColor = "white");
+}
+
 /* --- Box Modifiers --- */
 const createBox = () =>
 {

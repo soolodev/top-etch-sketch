@@ -134,6 +134,16 @@ main
     max-width: 100px;
     height: 35px;
     background-color: white;
+    margin-top: 5px;
+}
+
+#clear-btn
+{
+    width: 80%;
+    max-width: 100px;
+    height: 35px;
+    background-color: white;
+    margin-top: 5px;
 }
 
 #black-brush, #white-brush, #rainbow-brush
@@ -255,6 +265,18 @@ main
     {
         width: 30px;
         height: 30px;
+    }
+
+    #reset-btn
+    {
+        width: 40%;
+        margin-top: 0;
+    }
+
+    #clear-btn
+    {
+        width: 40%;
+        margin-top: 0;
     }
 
     #black-brush, #white-brush, #rainbow-brush
