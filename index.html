@@ -72,6 +72,10 @@
 
         // Touch
         document.querySelector("#etch-sketch").addEventListener("touchstart", e => touchStart(e));
+
+        // Mouse Click
+        document.querySelector("#etch-sketch").addEventListener("mousedown", e => mouseDown(e));
+        window.addEventListener("mouseup", e => mouseUp(e));
     </script>
 </body>
 </html>

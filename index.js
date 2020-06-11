@@ -10,6 +10,8 @@ const BRUSH_BLACK = "black-brush";
 const BRUSH_WHITE = "white-brush";
 const BRUSH_RAINBOW = "rainbow-brush";
 
+let brushInUse = false;
+
 let boxCount = 0;
 let brushType;
 
@@ -137,6 +139,11 @@ const randomBackground = elem =>
 
 const changeBackground = elem =>
 {
+    if (brushInUse == false)
+    {
+        return;
+    }
+
     if (brushType == BRUSH_BLACK)
     {
         blackBackground(elem);
@@ -151,11 +158,20 @@ const changeBackground = elem =>
     }
 }
 
+const changeBackgroundByClick = e =>
+{
+    brushInUse = true;
+    changeBackground(e.target);
+    brushInUse = false;
+}
+
 const fillGrid = () =>
 {
     let boxes = document.querySelectorAll(".box");
 
+    brushInUse = true;
     boxes.forEach(box => changeBackground(box));
+    brushInUse = false;
 }
 
 /* --- Box Modifiers --- */
@@ -164,6 +180,7 @@ const createBox = () =>
     let newBox = document.createElement("div");
     newBox.classList.add("box");
     newBox.addEventListener("mouseenter", e => changeBackground(e));
+    newBox.addEventListener("click", e => changeBackgroundByClick(e));
 
     return newBox;
 }
@@ -328,6 +345,8 @@ const touchEnd = e =>
 {
     e.preventDefault();
 
+    brushInUse = false;
+
     e.target.removeEventListener("touchmove", touchMove);
     e.target.removeEventListener("touchend", touchEnd);
 }
@@ -335,6 +354,8 @@ const touchEnd = e =>
 const touchMove = e =>
 {
     e.preventDefault();
+
+    brushInUse = true;
 
     let touch = e.touches[0];
     let posX = touch.pageX;
@@ -351,6 +372,8 @@ const touchMove = e =>
 const touchStart = e =>
 {
     e.preventDefault();
+
+    brushInUse = true;
 
     e.target.addEventListener("touchmove", e => touchMove(e));
     e.target.addEventListener("touchend", e => touchEnd(e));
@@ -393,4 +416,15 @@ const moveOut = (e) =>
     const containerObj = document.querySelector("#tip-container");
 
     containerObj.classList.remove("visible", "active");
+}
+
+const mouseDown = e =>
+{
+    e.preventDefault();
+    brushInUse = true;
+}
+
+const mouseUp = e =>
+{
+    brushInUse = false;
 }
