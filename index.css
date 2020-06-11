@@ -119,6 +119,7 @@ main
     text-align: center;
     margin: 1px;
     padding: 0;
+    background-color: white;
 }
 
 #box-range
@@ -132,6 +133,7 @@ main
     width: 80%;
     max-width: 100px;
     height: 35px;
+    background-color: white;
 }
 
 #black-brush, #white-brush, #rainbow-brush
