@@ -19,7 +19,7 @@
         <div id="options">
             <p>Grid size</p>
             <p>(max 128)</p>
-            <button id="decrease-btn">-</button><input id="box-count" type="text" maxlength="3" pattern="[0-9]{1,3}" placeholder="8"><button id="increase-btn">+</button>
+            <button id="decrease-btn">-</button><input id="box-text" type="text" maxlength="3" pattern="[0-9]{1,3}" placeholder="8"><button id="increase-btn">+</button>
             <br>
             <input id="box-range" type="range" min="1" max="128">
             <p class="desktop-tip">Scroll to adjust grid size</p>
@@ -29,7 +29,7 @@
             <p>Brush Type</p>
             <button id="black-brush">B</button>
             <button id="white-brush">W</button>
-            <button id="random-brush">R</button>
+            <button id="rainbow-brush">R</button>
             <div id="tip-container">
                 <span id="pointer"></span>
                 <p>Black Brush</p>
@@ -41,11 +41,11 @@
     <script>
         // Buttons
         document.querySelector("#reset-btn").addEventListener("click", resetBoxCount);
-        document.querySelector("#increase-btn").addEventListener("click", incrementBoxCount);
-        document.querySelector("#decrease-btn").addEventListener("click", decrementBoxCount);
+        document.querySelector("#increase-btn").addEventListener("click", addOneBox);
+        document.querySelector("#decrease-btn").addEventListener("click", minusOneBox);
 
         // Text box
-        document.querySelector("#box-count").addEventListener("change", e => boxChange(e));
+        document.querySelector("#box-text").addEventListener("change", e => boxChange(e));
 
         // Range
         document.querySelector("#box-range").addEventListener("change", e => rangeChange(e));
@@ -53,11 +53,15 @@
         // Brushes
         document.getElementById("black-brush").addEventListener("mouseenter", e => moveIn(e));
         document.getElementById("white-brush").addEventListener("mouseenter", e => moveIn(e));
-        document.getElementById("random-brush").addEventListener("mouseenter", e => moveIn(e));
+        document.getElementById("rainbow-brush").addEventListener("mouseenter", e => moveIn(e));
 
         document.getElementById("black-brush").addEventListener("mouseleave", e => moveOut(e));
         document.getElementById("white-brush").addEventListener("mouseleave", e => moveOut(e));
-        document.getElementById("random-brush").addEventListener("mouseleave", e => moveOut(e));
+        document.getElementById("rainbow-brush").addEventListener("mouseleave", e => moveOut(e));
+
+        document.getElementById("black-brush").addEventListener("click", () => changeBrush("black-brush"));
+        document.getElementById("white-brush").addEventListener("click", () => changeBrush("white-brush"));
+        document.getElementById("rainbow-brush").addEventListener("click", () => changeBrush("rainbow-brush"));
 
         // Scroll
         window.addEventListener("wheel", e => mouseScroll(e));

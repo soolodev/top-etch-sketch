@@ -1,9 +1,90 @@
 const BOX_COUNT_INIT = 16;
-const BOX_COUNT_MAX = 128;
 const BOX_COUNT_MIN = 1;
+const BOX_COUNT_MAX = 128;
 
-let brushType = "Rainbow";
+let ETCH_SKETCH;
+let BOX_TEXT_OBJ;
+let BOX_RANGE_OBJ;
 
+const BRUSH_BLACK = "black-brush";
+const BRUSH_WHITE = "white-brush";
+const BRUSH_RAINBOW = "rainbow-brush";
+
+let boxCount = 0;
+let brushType;
+
+/* --- Helpers --- */
+const isGreaterThanOrEqualToMax = value =>
+{
+    if (value >= BOX_COUNT_MAX)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+const isLessThanOrEqualToMin = value =>
+{
+    if (value <= BOX_COUNT_MIN)
+    {
+        return true;
+    }
+    else
+    {
+        return false;
+    }
+}
+
+const applyCountBound = value =>
+{
+    if (isLessThanOrEqualToMin(value))
+    {
+        return BOX_COUNT_MIN;
+    }
+    else if (isGreaterThanOrEqualToMax(value))
+    {
+        return BOX_COUNT_MAX;
+    }
+    else
+    {
+        return value;
+    }
+}
+
+const updateUI = () =>
+{
+    BOX_TEXT_OBJ.value = boxCount;
+    BOX_RANGE_OBJ.value = boxCount;
+}
+
+/* --- Grid Size Modifiers --- */
+const updateBoxCount = value =>
+{
+    boxCount = applyCountBound(value);
+    updateUI();
+}
+
+/* --- Brush Modifiers --- */
+const changeBrush = choice =>
+{
+    if (choice == BRUSH_BLACK ||
+        choice == BRUSH_WHITE ||
+        choice == BRUSH_RAINBOW)
+    {
+        brushType = choice;
+
+        document.querySelector(`#${BRUSH_BLACK}`).classList.remove("active-button");
+        document.querySelector(`#${BRUSH_WHITE}`).classList.remove("active-button");
+        document.querySelector(`#${BRUSH_RAINBOW}`).classList.remove("active-button");
+
+        document.querySelector(`#${choice}`).classList.add("active-button");
+    }
+}
+
+/* --- Background Modifiers --- */
 const randomColor = () =>
 {
     // from https://css-tricks.com/snippets/javascript/random-hex-color/
@@ -18,82 +99,124 @@ const randomColor = () =>
     return ("#" + randColor);
 }
 
-const randomBackground = e =>
+const blackBackground = elem =>
 {
-    e.target.style.backgroundColor = randomColor();
+    if (elem instanceof Event)
+    {
+        elem.target.style.backgroundColor = "#000";
+    }
+    else
+    {
+        elem.style.backgroundColor = "#000";
+    }
 }
 
-const addOneBox = currCount =>
+const whiteBackground = elem =>
 {
-    const etchSketch = document.querySelector("#etch-sketch");
-    let rows = document.querySelectorAll(".row");
-
-    if (currCount >= BOX_COUNT_MAX)
+    if (elem instanceof Event)
     {
-        return;
+        elem.target.style.backgroundColor = "#FFF";
     }
+    else
+    {
+        elem.style.backgroundColor = "#FFF";
+    }
+}
 
-    // Add a new box to each existing row
-    rows.forEach(row => {
-        let newBox = document.createElement("div");
-        newBox.classList.add("box");
-        newBox.addEventListener("mouseenter", e => randomBackground(e));
-        row.appendChild(newBox);
-    })
+const randomBackground = elem =>
+{
+    if (elem instanceof Event)
+    {
+        elem.target.style.backgroundColor = randomColor();
+    }
+    else
+    {
+        elem.style.backgroundColor = randomColor();
+    }
+}
 
-    // Add a new row with the correct amount of boxes
+const changeBackground = elem =>
+{
+    if (brushType == BRUSH_BLACK)
+    {
+        blackBackground(elem);
+    }
+    else if (brushType == BRUSH_WHITE)
+    {
+        whiteBackground(elem);
+    }
+    else if (brushType == BRUSH_RAINBOW)
+    {
+        randomBackground(elem);
+    }
+}
+
+/* --- Box Modifiers --- */
+const createBox = () =>
+{
+    let newBox = document.createElement("div");
+    newBox.classList.add("box");
+    newBox.addEventListener("mouseenter", e => changeBackground(e));
+
+    return newBox;
+}
+
+const createRow = rowSize =>
+{
     let newRow = document.createElement("div");
     newRow.classList.add("row");
 
-    for (let i = 0; i <= currCount; i++)
+    for (let i = 0; i < rowSize; i++)
     {
-        let newBox = document.createElement("div");
-        newBox.classList.add("box");
-        newBox.addEventListener("mouseenter", e => randomBackground(e));
-        newRow.appendChild(newBox);
+        newRow.appendChild(createBox());
     }
 
-    etchSketch.appendChild(newRow);
-
-    document.querySelector("#box-count").value = currCount + 1;
-    document.querySelector("#box-range").value = currCount + 1;
+    return newRow;
 }
 
-const minusOneBox = currCount =>
+const addOneBox = () =>
 {
-    const etchSketch = document.querySelector("#etch-sketch");
-    let rows = document.querySelectorAll(".row");
-    let rowToRemove = Array.from(rows).pop();
+    let rows;
+    let newRow;
 
-    if (currCount <= BOX_COUNT_MIN)
+    if (isGreaterThanOrEqualToMax(boxCount))
     {
         return;
     }
 
-    // Remove a box to each existing row
-    rows.forEach(row => {
-        let boxToRemove = Array.from(row.childNodes).pop();
-        boxToRemove.remove();
-    })
+    updateBoxCount(boxCount + 1);
 
-    rowToRemove.remove();
+    rows = document.querySelectorAll(".row"); // Get all rows
+    rows.forEach(row => row.appendChild(createBox())); // Add box to each row
+    ETCH_SKETCH.appendChild(createRow(boxCount)); // Add row to main
+}
 
-    document.querySelector("#box-count").value = currCount - 1;
-    document.querySelector("#box-range").value = currCount - 1;
+const minusOneBox = () =>
+{
+    let rows;
+    let rowToRemove;
+
+    if (isLessThanOrEqualToMin(boxCount))
+    {
+        return;
+    }
+
+    updateBoxCount(boxCount - 1);
+
+    rows = document.querySelectorAll(".row");
+    rowToRemove = Array.from(rows).pop();
+
+    rows.forEach(row => Array.from(row.childNodes).pop().remove()); // Remove box from each existing row
+    rowToRemove.remove(); // Remove last row
 }
 
 const resetBoxCount = () =>
 {
-    let boxCountObj = document.querySelector("#box-count");
-    let boxRangeObj = document.querySelector("#box-range");
-    let boxCount = parseInt(boxCountObj.value, 10);
-
     if (boxCount > BOX_COUNT_INIT)
     {
         while (boxCount != BOX_COUNT_INIT)
         {
             minusOneBox(boxCount);
-            boxCount -= 1;
         }
     }
     else if (boxCount < BOX_COUNT_INIT)
@@ -101,104 +224,97 @@ const resetBoxCount = () =>
         while (boxCount != BOX_COUNT_INIT)
         {
             addOneBox(boxCount);
-            boxCount += 1;
         }
     }
 }
 
-const incrementBoxCount = () =>
-{
-    const boxCountObj = document.querySelector("#box-count");
-    let boxCount = parseInt(boxCountObj.value, 10);
-
-    addOneBox(boxCount);
-}
-
-const decrementBoxCount = () =>
-{
-    const boxCountObj = document.querySelector("#box-count");
-    let boxCount = parseInt(boxCountObj.value, 10);
-
-    minusOneBox(boxCount);
-}
-
+/* --- Events --- */
 const initPage = () =>
 {
-    const boxCountObj = document.querySelector("#box-count");
-    const etchSketch = document.querySelector("#etch-sketch");
+    ETCH_SKETCH = document.querySelector("#etch-sketch");
+    BOX_TEXT_OBJ = document.querySelector("#box-text");
+    BOX_RANGE_OBJ = document.querySelector("#box-range");
+
     let rows = [];
     let boxes = [];
 
     for (let i = 0; i < BOX_COUNT_INIT; i++)
     {
-        let newRow = document.createElement("div");
-        newRow.classList.add("row");
-
-        for (let j = 0; j < BOX_COUNT_INIT; j++)
-        {
-            let newBox = document.createElement("div");
-            newBox.classList.add("box");
-            newBox.addEventListener("mouseenter", e => randomBackground(e));
-            newRow.appendChild(newBox);
-        }
-
-        rows.push(newRow);
+        rows.push(createRow(BOX_COUNT_INIT)); // Create initial set of rows
     }
 
-    rows.forEach(row => etchSketch.appendChild(row));
-    boxCountObj.value = BOX_COUNT_INIT;
-    document.querySelector("#box-range").value = BOX_COUNT_INIT;
+    rows.forEach(row => ETCH_SKETCH.appendChild(row));
 
-    document.querySelector("#random-brush").classList.add("active-button");
+    updateBoxCount(BOX_COUNT_INIT);
+    changeBrush(BRUSH_BLACK);
+}
+
+const boxChange = e =>
+{
+    let changeValue = e.target.value;
+
+    if (isGreaterThanOrEqualToMax(changeValue))
+    {
+        changeValue = BOX_COUNT_MAX;
+    }
+    else if (isLessThanOrEqualToMin(changeValue))
+    {
+        changeValue = BOX_COUNT_MIN;
+    }
+
+    if (boxCount > changeValue)
+    {
+        while (boxCount != changeValue)
+        {
+            minusOneBox(boxCount);
+        }
+    }
+    else if (boxCount < changeValue)
+    {
+        while (boxCount != changeValue)
+        {
+            addOneBox(boxCount);
+        }
+    }
+}
+
+const rangeChange = e =>
+{
+    let rangeValue = e.target.value;
+
+    if (boxCount > rangeValue)
+    {
+        while (boxCount != rangeValue)
+        {
+            minusOneBox(boxCount);
+        }
+    }
+    else if (boxCount < rangeValue)
+    {
+        while (boxCount != rangeValue)
+        {
+            addOneBox(boxCount);
+        }
+    }
 }
 
 const mouseScroll = e =>
 {
     e.preventDefault();
 
-    let boxCount = document.querySelector("#box-count").value;
     let deltaY = e.deltaY;
 
-    if (deltaY > 0 && boxCount > BOX_COUNT_MIN)
+    if (deltaY > 0 && !(isLessThanOrEqualToMin(boxCount)))
     {
-        decrementBoxCount();
+        minusOneBox();
     }
-    else if (deltaY < 0 && boxCount < BOX_COUNT_MAX)
+    else if (deltaY < 0 && !(isGreaterThanOrEqualToMax(boxCount)))
     {
-        incrementBoxCount();
-    }
-}
-
-const boxChange = e =>
-{
-    return;
-}
-
-const rangeChange = e =>
-{
-    let boxCountObj = document.querySelector("#box-count");
-    let boxRangeObj = document.querySelector("#box-range");
-    let boxCount = parseInt(boxCountObj.value, 10);
-    let rangeValue = e.target.value;
-
-    if (boxCount > rangeValue)
-    {
-        while (boxCount != rangeValue && boxCount > BOX_COUNT_MIN)
-        {
-            minusOneBox(boxCount);
-            boxCount -= 1;
-        }
-    }
-    else if (boxCount < rangeValue)
-    {
-        while (boxCount != rangeValue && boxCount < BOX_COUNT_MAX)
-        {
-            addOneBox(boxCount);
-            boxCount += 1;
-        }
+        addOneBox();
     }
 }
 
+/* --- Mobile Events --- */
 const touchEnd = e =>
 {
     e.preventDefault();
@@ -215,14 +331,12 @@ const touchMove = e =>
     let posX = touch.pageX;
     let posY = touch.pageY;
 
-    // console.log(e);
-
     let selectedBox = document.elementFromPoint(posX, posY);
 
-    // console.log(selectedBox);
-
     if (selectedBox != null && selectedBox.classList.contains("box"))
-        selectedBox.style.backgroundColor = randomColor();
+    {
+        changeBackground(selectedBox);
+    }
 }
 
 const touchStart = e =>
@@ -233,10 +347,7 @@ const touchStart = e =>
     e.target.addEventListener("touchend", e => touchEnd(e));
 }
 
-/*
-    Tool tip
-*/
-// Swaps text and shows tip
+/* --- Tool Tip --- */
 const moveIn = (e) =>
 {
     const hoverObject = e.target.id;
@@ -250,24 +361,24 @@ const moveIn = (e) =>
 
     containerObj.classList.add("visible");
     containerObj.classList.add("active");
-    pointerObj.style.setProperty("left", `${hoverPos.left + (hoverPos.width / 2) - (pointerPos.width / 2)}px`);
+    pointerObj.style.setProperty("left", `${hoverPos.left +
+        (hoverPos.width / 2) - (pointerPos.width / 2)}px`);
 
-    if (hoverObject == "black-brush")
+    if (hoverObject == BRUSH_BLACK)
     {
         tipText.innerHTML = "Black Brush";
     }
-    else if (hoverObject == "white-brush")
+    else if (hoverObject == BRUSH_WHITE)
     {
         tipText.innerHTML = "White Brush";
     }
-    else if (hoverObject == "random-brush")
+    else if (hoverObject == BRUSH_RAINBOW)
     {
         tipText.innerHTML = "Rainbow Brush";
     }
 
 }
 
-// remove tip
 const moveOut = (e) =>
 {
     const containerObj = document.querySelector("#tip-container");

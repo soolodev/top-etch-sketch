@@ -96,7 +96,7 @@ main
     -webkit-box-sizing: border-box;
 }
 
-#box-count
+#box-text
 {
     width: 40%;
     height: 20px;
@@ -126,7 +126,7 @@ main
     height: 35px;
 }
 
-#black-brush, #white-brush, #random-brush
+#black-brush, #white-brush, #rainbow-brush
 {
     width: 25%;
     height: 35px;
@@ -144,7 +144,7 @@ main
     background-color: white;
 }
 
-#random-brush
+#rainbow-brush
 {
     background: red; /* For browsers that do not support gradients */
     background: -webkit-linear-gradient(left, orange , yellow, green, cyan, blue, violet); /* For Safari 5.1 to 6.0 */
@@ -217,7 +217,7 @@ main
         height: 450px;
     }
 
-    #black-brush, #white-brush, #random-brush
+    #black-brush, #white-brush, #rainbow-brush
     {
         height: 28px;
     }
@@ -236,12 +236,12 @@ main
         height: 340px;
     }
 
-    #box-count
+    #box-text
     {
         height: 16px;
     }
 
-    #black-brush, #white-brush, #random-brush
+    #black-brush, #white-brush, #rainbow-brush
     {
         height: 23px;
     }
