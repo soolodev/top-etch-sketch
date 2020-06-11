@@ -375,6 +375,11 @@ const touchStart = e =>
 
     brushInUse = true;
 
+    if (e.target.classList.contains("box"))
+    {
+        changeBackground(e.target);
+    }
+
     e.target.addEventListener("touchmove", e => touchMove(e));
     e.target.addEventListener("touchend", e => touchEnd(e));
 }
