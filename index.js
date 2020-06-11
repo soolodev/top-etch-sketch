@@ -11,6 +11,7 @@ const BRUSH_WHITE = "white-brush";
 const BRUSH_RAINBOW = "rainbow-brush";
 
 let brushInUse = false;
+let hoverMode = false;
 
 let boxCount = 0;
 let brushType;
@@ -139,7 +140,7 @@ const randomBackground = elem =>
 
 const changeBackground = elem =>
 {
-    if (brushInUse == false)
+    if (!brushInUse && !hoverMode)
     {
         return;
     }
@@ -421,6 +422,22 @@ const moveOut = (e) =>
     const containerObj = document.querySelector("#tip-container");
 
     containerObj.classList.remove("visible", "active");
+}
+
+/* --- Mouse Hold to Paint --- */
+const hoverToggle = () =>
+{
+    hoverMode = !hoverMode;
+
+    if (hoverMode)
+    {
+        document.querySelector("#hover-btn").textContent = "HOVER ON";
+    }
+    else
+    {
+        document.querySelector("#hover-btn").textContent = "HOVER OFF";
+    }
+
 }
 
 const mouseDown = e =>

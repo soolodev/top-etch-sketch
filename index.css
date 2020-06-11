@@ -128,7 +128,7 @@ main
     margin: 10px 0 0;
 }
 
-#reset-btn, #fill-btn
+#reset-btn, #fill-btn, #hover-btn
 {
     width: 80%;
     max-width: 120px;
@@ -264,13 +264,17 @@ main
         height: 30px;
     }
 
-    #reset-btn
+    #reset-btn, #fill-btn
     {
         width: 40%;
         margin-top: 0;
     }
 
-    #fill-btn
+    #hover-btn
+    {
+        display: none;
+    }
+
     {
         width: 40%;
         margin-top: 0;

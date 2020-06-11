@@ -27,6 +27,7 @@
 
             <button id="reset-btn">RESET SIZE</button>
             <button id="fill-btn">FILL GRID</button>
+            <button id="hover-btn">HOVER OFF</button>
             <hr>
 
             <p>Brush Type</p>
@@ -45,6 +46,7 @@
         // Buttons
         document.querySelector("#reset-btn").addEventListener("click", resetBoxCount);
         document.querySelector("#fill-btn").addEventListener("click", fillGrid);
+        document.querySelector("#hover-btn").addEventListener("click", hoverToggle);
         document.querySelector("#increase-btn").addEventListener("click", addOneBox);
         document.querySelector("#decrease-btn").addEventListener("click", minusOneBox);
 
