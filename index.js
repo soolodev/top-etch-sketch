@@ -276,6 +276,8 @@ const boxChange = e =>
             addOneBox(boxCount);
         }
     }
+
+    updateUI();
 }
 
 const rangeChange = e =>
